@@ -1,9 +1,11 @@
 """Timed pipeline: dbt build -> counts -> exports -> receipts.md. Assumes load.py already ran."""
-import json, re, subprocess, time
+import json, os, re, subprocess, time
 import duckdb
 
+DBT = ".venv/bin/dbt" if os.path.exists(".venv/bin/dbt") else "dbt"
+
 t0 = time.time()
-build = subprocess.run([".venv/bin/dbt", "build", "--profiles-dir", "."],
+build = subprocess.run([DBT, "build", "--profiles-dir", "."],
                        capture_output=True, text=True)
 print(build.stdout[-2000:])
 if build.returncode != 0:
