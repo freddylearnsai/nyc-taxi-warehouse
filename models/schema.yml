@@ -1,0 +1,18 @@
+version: 2
+models:
+  - name: stg_trips
+    columns:
+      - name: picked_up_at
+        tests: [not_null]
+      - name: total_amount
+        tests: [not_null]
+  - name: fct_daily_trips
+    columns:
+      - name: trip_date
+        tests: [not_null, unique]
+      - name: trips
+        tests: [not_null]
+  - name: mart_month_summary
+    columns:
+      - name: trips
+        tests: [not_null]
