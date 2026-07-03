@@ -1,5 +1,5 @@
 """Load the newest available TLC yellow-taxi month into warehouse.duckdb (schema raw)."""
-import datetime as dt, json, time, urllib.request
+import datetime as dt, json, os, time, urllib.request
 import duckdb
 
 BASE = "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_{month}.parquet"
@@ -28,6 +28,7 @@ def main() -> None:
     month = newest_available()
     url = BASE.format(month=month)
     path = "data/yellow.parquet"
+    os.makedirs("data", exist_ok=True)  # gitignored dir; absent on a fresh CI checkout
     urllib.request.urlretrieve(url, path)
     con = duckdb.connect("warehouse.duckdb")
     con.execute("create schema if not exists raw")
