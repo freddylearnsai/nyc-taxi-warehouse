@@ -12,6 +12,7 @@ Measured from the actual run. Reproduce: `python load.py && python run_all.py`.
 | Days in daily fact table | 31 |
 | Transform + test runtime (dbt build) | 6.3 s |
 | Monthly infrastructure cost | $0 |
+| First scheduled-infra run (GitHub Actions) | success · 29 s · [run 28673829145](https://github.com/freddylearnsai/nyc-taxi-warehouse/actions/runs/28673829145) |
 
 Month summary (from `mart_month_summary`):
 
